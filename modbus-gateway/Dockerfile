@@ -17,5 +17,4 @@ RUN python3 -m venv /opt/venv && \
 COPY main.py /app/
 COPY run.sh /app/
 RUN chmod +x /app/run.sh
-
 CMD ["/app/run.sh"]
