@@ -3,7 +3,7 @@ FROM $BUILD_FROM
 
 LABEL io.hass.type="app"
 LABEL io.hass.version="2026.1.0"
-LABEL io.hass.arch="amd64 aarch64 armv7 i386"
+LABEL io.hass.arch="amd64 aarch64"
 
 ENV PYTHONUNBUFFERED=1
 WORKDIR /app
