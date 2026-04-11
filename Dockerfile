@@ -1,0 +1,13 @@
+FROM python:3.12-slim
+
+ENV PYTHONUNBUFFERED=1
+WORKDIR /app
+
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY main.py /app/
+COPY run.sh /app/
+RUN chmod +x /app/run.sh
+
+CMD ["/app/run.sh"]
