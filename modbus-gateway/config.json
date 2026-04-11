@@ -4,12 +4,10 @@
   "slug": "modbus-gateway",
   "description": "Home Assistant add-on providing a pymodbus 3.x Modbus TCP server with optional serial RTU slave forwarding.",
   "startup": "services",
-  "boot": "auto",
-  "arch": ["amd64", "armv7", "aarch64", "i386"],
+  "arch": ["amd64",  "aarch64"],
   "host_network": true,
   "homeassistant": "2026.1.0",
   "homeassistant_api": true,
-  "ingress": false,
   "uart": true,
   "options": {
     "modbus_tcp_host": "0.0.0.0",
