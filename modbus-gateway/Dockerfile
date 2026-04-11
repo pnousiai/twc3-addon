@@ -18,4 +18,4 @@ COPY main.py /app/
 COPY run.sh /app/
 RUN chmod +x /app/run.sh
 
-CMD ["/run.sh"]
+CMD ["/app/run.sh"]
