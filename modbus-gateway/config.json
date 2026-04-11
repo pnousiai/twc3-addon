@@ -1,6 +1,6 @@
 {
   "name": "Modbus Gateway Add-on",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "slug": "modbus-gateway",
   "description": "Home Assistant add-on providing a pymodbus 3.x Modbus TCP server with optional serial RTU slave forwarding.",
   "startup": "services",
