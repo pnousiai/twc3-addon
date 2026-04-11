@@ -22,7 +22,25 @@ jobs:
 
       - name: 🔍 Find app directories
         id: addons
-        uses: home-assistant/actions/helpers/find-addons@master
+        shell: bash
+        run: |
+          declare -a addons
+          declare -a addons_list
+
+          for config in $(find ./ -maxdepth 2 \( -name config.json -o -name config.yaml -o -name config.yml \)); do
+            addon_dir=$(dirname "$config")
+            addon_dir=${addon_dir#./}
+            [[ "${addon_dir}" == "" ]] && addon_dir="."
+            addons+=("${addon_dir}")
+          done
+
+          addons=($(printf '%s\n' "${addons[@]}" | sort -u))
+          json_list=$(printf '"%s",' "${addons[@]}")
+          json_list="[${json_list%,}]"
+
+          echo "Found addons: ${addons[@]}"
+          echo "addons=${addons[@]}" >> "$GITHUB_OUTPUT"
+          echo "addons_list=[${json_list}]" >> "$GITHUB_OUTPUT"
 
   lint:
     name: Lint app ${{ matrix.path }}
