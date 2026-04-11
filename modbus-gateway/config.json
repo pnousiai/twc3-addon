@@ -9,6 +9,7 @@
   "homeassistant": "2026.1.0",
   "homeassistant_api": true,
   "uart": true,
+  "init: false,
   "options": {
     "modbus_tcp_host": "0.0.0.0",
     "modbus_tcp_port": 502,
