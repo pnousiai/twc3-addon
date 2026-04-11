@@ -1,11 +1,10 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/base:latest
+ARG BUILD_FROM=ghcr.io/home-assistant/base-python:3.12
 FROM $BUILD_FROM
 
 LABEL io.hass.type="app"
 LABEL io.hass.version="2026.1.0"
 LABEL io.hass.arch="amd64 aarch64 armv7 i386"
 
-RUN apk add --no-cache python3 py3-pip
 ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
