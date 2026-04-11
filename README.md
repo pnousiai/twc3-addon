@@ -4,8 +4,8 @@ This repository contains a Home Assistant add-on scaffold that provides a `pymod
 
 ## What is included
 
-- `config.json` - Home Assistant add-on manifest compatible with `2026.x`
-- `Dockerfile` - Builds a lightweight Python 3.12 environment
+- `config.yaml` - Home Assistant add-on manifest compatible with `2026.x`
+- `Dockerfile` - Builds a lightweight Python runtime on the Home Assistant base image
 - `requirements.txt` - Installs `pymodbus>=3.0,<4.0` and `pyserial`
 - `run.sh` - Entrypoint for the add-on container
 - `main.py` - Modbus gateway that bridges TCP writes to serial RTU registers

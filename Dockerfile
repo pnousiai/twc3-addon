@@ -1,5 +1,7 @@
-FROM python:3.12-slim
+ARG BUILD_FROM=ghcr.io/home-assistant/base:latest
+FROM $BUILD_FROM
 
+RUN apk add --no-cache python3 py3-pip
 ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
