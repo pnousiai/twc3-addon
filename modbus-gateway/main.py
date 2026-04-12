@@ -12,12 +12,33 @@ from pymodbus.datastore import (
 from pymodbus.server import StartAsyncTcpServer, StartAsyncSerialServer
 
 
+# 🔍 Logging DataBlock
+class LoggingDataBlock(ModbusSequentialDataBlock):
+    def getValues(self, address, count=1):
+        values = super().getValues(address, count)
+        logging.info(
+            "[READ] addr=%s count=%s -> %s",
+            address,
+            count,
+            values,
+        )
+        return values
+
+    def setValues(self, address, values):
+        logging.info(
+            "[WRITE] addr=%s values=%s",
+            address,
+            values,
+        )
+        super().setValues(address, values)
+
+
 def build_context(register_count: int, unit_id: int) -> ModbusServerContext:
     device = ModbusDeviceContext(
-        di=ModbusSequentialDataBlock(0, [0] * register_count),
-        co=ModbusSequentialDataBlock(0, [0] * register_count),
-        hr=ModbusSequentialDataBlock(0, [0] * register_count),
-        ir=ModbusSequentialDataBlock(0, [0] * register_count),
+        di=LoggingDataBlock(0, [0] * register_count),
+        co=LoggingDataBlock(0, [0] * register_count),
+        hr=LoggingDataBlock(0, [0] * register_count),
+        ir=LoggingDataBlock(0, [0] * register_count),
     )
 
     return ModbusServerContext(devices={unit_id: device}, single=False)
@@ -98,10 +119,14 @@ async def main():
 
     args = parser.parse_args()
 
+    # 🔥 Enable verbose logging (including pymodbus internals)
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s: %(message)s",
     )
+
+    # Optional: turn on deep pymodbus debug
+    logging.getLogger("pymodbus").setLevel(logging.DEBUG)
 
     context = build_context(args.register_count, args.unit_id)
     identity = build_identity()
