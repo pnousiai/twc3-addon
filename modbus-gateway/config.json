@@ -1,6 +1,6 @@
 {
   "name": "Modbus Gateway Add-on",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "slug": "modbus-gateway",
   "description": "Home Assistant add-on providing a pymodbus 3.x Modbus TCP server with optional serial RTU slave forwarding.",
   "startup": "services",
@@ -15,7 +15,7 @@
     "modbus_tcp_port": 503,
     "modbus_unit_id": 1,
     "register_count": 100,
-    "serial_enabled": false,
+    "serial_enabled": true,
     "serial_port": "/dev/ttyUSB0",
     "serial_baudrate": 115200,
     "serial_parity": "N",
