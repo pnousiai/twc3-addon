@@ -18,7 +18,7 @@ if [[ "${SERIAL_ENABLED,,}" == "true" || "${SERIAL_ENABLED}" == "1" ]]; then
   SERIAL_FLAG="--serial-enabled"
 fi
 
-exec python3 /app/main.py \
+exec /opt/venv/bin/python /app/main.py \
   --tcp-host "$MODBUS_TCP_HOST" \
   --tcp-port "$MODBUS_TCP_PORT" \
   --unit-id "$MODBUS_UNIT_ID" \

@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/base-python:3.12
+ARG BUILD_FROM=ghcr.io/home-assistant/base:latest
 FROM $BUILD_FROM
 
 LABEL io.hass.type="app"
@@ -10,9 +10,9 @@ ENV PATH="/opt/venv/bin:$PATH"
 WORKDIR /app
 
 RUN apk add --no-cache python3 py3-pip
+RUN python3 -m venv /opt/venv
 COPY requirements.txt /app/
-RUN python3 -m venv /opt/venv && \
-    /opt/venv/bin/pip install --no-cache-dir -r requirements.txt
+RUN /opt/venv/bin/pip install --no-cache-dir -r requirements.txt
 
 COPY main.py /app/
 COPY run.sh /app/
