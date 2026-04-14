@@ -40,10 +40,10 @@ def build_context(register_count: int, unit_id: int) -> ModbusServerContext:
         )
     
     device = ModbusDeviceContext(
-        di=LoggingDataBlock(1, [0] * register_count),
-        co=LoggingDataBlock(1, [0] * register_count),
-        hr=LoggingDataBlock(1, [0] * register_count),
-        ir=LoggingDataBlock(1, [0] * register_count),
+        di=LoggingDataBlock(0, [0] * register_count),
+        co=LoggingDataBlock(0, [0] * register_count),
+        hr=LoggingDataBlock(0, [0] * register_count),
+        ir=LoggingDataBlock(0, [0] * register_count),
     )
 
     return ModbusServerContext(devices={unit_id: device}, single=False)
