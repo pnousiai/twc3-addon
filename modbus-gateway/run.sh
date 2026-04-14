@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bashio
 set -euo pipefail
 
 MODBUS_TCP_HOST="${MODBUS_TCP_HOST:-0.0.0.0}"

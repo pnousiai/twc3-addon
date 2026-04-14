@@ -34,6 +34,11 @@ class LoggingDataBlock(ModbusSequentialDataBlock):
 
 
 def build_context(register_count: int, unit_id: int) -> ModbusServerContext:
+    if register_count > 65535:
+        raise ValueError(
+            f"register_count must be <= 65535 (Modbus address limit), got {register_count}"
+        )
+    
     device = ModbusDeviceContext(
         di=LoggingDataBlock(0, [0] * register_count),
         co=LoggingDataBlock(0, [0] * register_count),
